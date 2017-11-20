@@ -152,7 +152,6 @@ function skillsoft_view_display($skillsoft, $user, $return=false) {
 		}
 		$launcher .= $connector.'aicc_sid='.$newkey.'&aicc_url='.$CFG->wwwroot.'/mod/skillsoft/aicchandler.php';
 		
-		//$options = "'".$CFG->skillsoft_aiccwindowsettings."'";
 		$options = "'".$skillsoft->aiccwindowsettings."'";
 
 		/*
@@ -177,7 +176,6 @@ function skillsoft_view_display($skillsoft, $user, $return=false) {
 		}
 	} else {
 		//we have skillsoft_ssourl so we replace {0} with $skillsoft->id
-		//$launcher = sprintf($CFG->skillsoft_ssourl,$skillsoft->assetid);
 		$launcher = sprintf($CFG->skillsoft_ssourl,$skillsoft->id);
 		$options = "''";
 		$element.= "<input type=\"hidden\" name=\"attempt\" id=\"attempt\" value=\"1\" >";
@@ -243,7 +241,6 @@ function skillsoft_insert_track($userid,$skillsoftid,$attempt,$element,$value) {
 		include_once('lib.php');
 		skillsoft_update_grades($skillsoft, $userid);
 	}
-	//print_object($track);
 	return $id;
 }
 
@@ -1247,25 +1244,6 @@ function skillsoft_process_received_customreport($handle, $trace=false, $prefix=
 	if ($trace) {
 		mtrace($prefix.get_string('skillsoft_customreport_process_totalrecords','skillsoft',$countofunprocessed));
 	}
-
-//	$limitfrom=0;
-//	$limitnum=1000;
-//
-//	do {
-//		if ($trace) {
-//			mtrace($prefix.get_string('skillsoft_customreport_process_batch','skillsoft',$limitfrom));
-//		}
-//		if ($unmatchedreportresults = $DB->get_records_select('skillsoft_report_results','userid=0',null,'id ASC','*',$limitfrom,$limitnum)) {
-//			foreach ($unmatchedreportresults as $reportresults) {
-//				$reportresults->userid = skillsoft_getusername_from_loginname($reportresults->loginname);
-//				if ($reportresults->userid != 0)
-//				{
-//					$id = $DB->update_record('skillsoft_report_results',$reportresults);
-//				}
-//			}
-//		}
-//		$limitfrom += 1000;
-//	} while (($unmatchedreportresults != false) && ($limitfrom < $countofunprocessed));
 
 	//Perform the match of userid using SQL alone
 	$sql = "UPDATE {skillsoft_report_results} ";

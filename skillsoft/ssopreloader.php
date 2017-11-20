@@ -33,9 +33,6 @@ $htmlbody = '<p>'.get_string('skillsoft_ssoloading', 'skillsoft').'&nbsp';
 $htmlbody .= '<img src="'. $OUTPUT->pix_url('wait', 'skillsoft').'" class="icon" alt="'.get_string('skillsoft_waitingalt','skillsoft').'" /><br/>';
 $htmlbody .= '</p>';
 
-
-//$target = $CFG->wwwroot.'/mod/skillsoft/sso.php?a='.$a;
-//$skillsoftpixdir = $CFG->modpixpath.'/skillsoft/pix';
 ?>
 <html>
 <head>

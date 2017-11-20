@@ -510,8 +510,9 @@ function AI_GetXmlAssetMetaData($assetid) {
 
 			//Create the Request
 			$GetXmlAssetMetaDataRequest =  array(
-	"customerId" => $customerId,
-	"assetId" => $assetid,
+				"customerId" => $customerId,
+				"assetId" => $assetid,
+				"format" => "XML"
 			);
 
 			//Call the WebService and stored result in $result

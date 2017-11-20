@@ -42,13 +42,11 @@ if (strtolower($id) != 'sso') {
 				print "window.opener.setTextArea(window.opener,'prereq',".'"'.olsadatatohtml($response->result->prerequisites).'");';
 				print "window.close();";
 			} else {
-				//error($response->errormessage);
 				print "document.getElementById('waitingmessage').style.display = 'none';";
 				print "document.getElementById('errormessage').style.display = 'block';";
 			}
 		} else {
 			if (!$CFG->skillsoft_trackingmode == TRACK_TO_LMS) {
-				//print '<p>'.get_string('skillsoft_ssoerror', 'skillsoft').'</p>';
 				print "window.opener.document.getElementById('id_name').value=".'"'.get_string('skillsoft_ssoassettitle', 'skillsoft').'";';
 				print "window.opener.document.getElementById('id_launch').value=".'"'.$CFG->skillsoft_ssourl.'";';
 				print "window.opener.document.getElementById('id_duration').value='0';";
@@ -73,7 +71,6 @@ if (strtolower($id) != 'sso') {
 <div id="waitingmessage"><p><?php echo get_string('skillsoft_metadatasetting', 'skillsoft');?></p></div>
 <div id="errormessage" style="display:none;"><p>
 <?php
-//$OUTPUT->close_window_button();
 if (strtolower($id) != 'sso') {
 	print '<p>'.get_string('skillsoft_metadataerror', 'skillsoft').'</p>';
 	print '<p>'.$response->errormessage.'</p>';

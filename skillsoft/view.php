@@ -12,8 +12,7 @@ require_once($CFG->dirroot.'/mod/skillsoft/locallib.php');
 
 
 //TODO: Find how to do this in Moodle2
- 
-//require_js($CFG->wwwroot . '/mod/skillsoft/skillsoft.js');
+
 $PAGE->requires->js('/mod/skillsoft/skillsoft.js');
 $id = optional_param('id', 0, PARAM_INT); // course_module ID, or
 $a  = optional_param('a', 0, PARAM_INT);  // skillsoft asset instance ID - it should be named as the first character of the module
@@ -45,8 +44,6 @@ $url = new moodle_url('/mod/skillsoft/view.php', array('id'=>$cm->id));
 
 require_login($course->id, false, $cm);
 
-//$context = get_context_instance(CONTEXT_COURSE, $course->id);
-
 $context = context_COURSE::instance($course->id);
 
 $strskillsofts = get_string('modulenameplural', 'skillsoft');
@@ -62,11 +59,8 @@ $SESSION->skillsoft_mode = 'normal';
 $SESSION->skillsoft_attempt = 1;
 
 $pagetitle = strip_tags($course->shortname.': '.format_string($skillsoft->name).' ('.format_string($skillsoft->assetid).')');
-//add_to_log($course->id, 'skillsoft', 'view activity', 'view.php?id='.$cm->id, 'View SkillSoft Asset: '.$skillsoft->name, $cm->id);
 
 skillsoft_event_log(SKILLSOFT_EVENT_ACTIVITY_VIEWED, $skillsoft, $context, $cm);
-
-
 
 $PAGE->set_url($url);
 //

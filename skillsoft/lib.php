@@ -49,8 +49,6 @@ function skillsoft_add_instance($skillsoft) {
 
 	if ($result = $DB->insert_record('skillsoft', $skillsoft)) {
 		$skillsoft->id = $result;
-		//$newskillsoft = get_record('skillsoft', 'id' , $result);
-		//skillsoft_grade_item_update(stripslashes_recursive($skillsoft),NULL);
 		skillsoft_grade_item_update($skillsoft,NULL);
 	}
 
@@ -308,7 +306,6 @@ function skillsoft_user_outline($course, $user, $mod, $skillsoft) {
 	global $CFG, $DB, $OUTPUT;
 	
 	require_once($CFG->dirroot.'/mod/skillsoft/locallib.php');
-	//require_once('locallib.php');
 
 	if (empty($attempt)) {
 		$attempt = skillsoft_get_last_attempt($skillsoft->id,$user->id);
@@ -349,7 +346,6 @@ function skillsoft_user_complete($course, $user, $mod, $skillsoft) {
 	global $CFG, $DB, $OUTPUT;
 	
 	require_once($CFG->dirroot.'/mod/skillsoft/locallib.php');
-	//require_once('locallib.php');
 
 	$table = new html_table();
 	$table->head = array(
@@ -370,8 +366,6 @@ function skillsoft_user_complete($course, $user, $mod, $skillsoft) {
 	$table->size = array('*','*', '*', '*', '*', '*', '*', '*', '*', '*');
 	$row = array();
 	$score = '&nbsp;';
-
-	
 	
 	$maxattempts = skillsoft_get_last_attempt($skillsoft->id,$user->id);
 	if ($maxattempts == 0) {
@@ -420,7 +414,6 @@ function skillsoft_user_complete($course, $user, $mod, $skillsoft) {
  */
 function skillsoft_print_recent_activity($course, $isteacher, $timestart) {
 	global $CFG, $DB, $OUTPUT;
-
 
 	//We need to customise this for MYSQL/MSSSQL
 	//m.value in database is string so need to convert to int for > comparison
@@ -509,7 +502,6 @@ function skillsoft_get_recent_mod_activity(&$activities, &$index, $timestart, $c
 	ORDER BY
 	a.skillsoftid DESC, a.timemodified ASC";
 
-	//$params = array($timestart, $courseid);
 	$records = $DB->get_records_sql($sql,$params);
 
 	if (!empty($records)) {
@@ -563,11 +555,8 @@ function skillsoft_print_recent_mod_activity($activity, $courseid, $detail, $mod
 		echo "<img src=\"" . $OUTPUT->pix_url('icon', $activity->type) . "\" ".
 				"class=\"icon\" alt=\"{$aname}\" />";
 	}
-	// link to activity
-	//$skillsofthref = new moodle_url('/mod/skillsoft/report.php', array('id'=>$activity->content->instance,'user'=>'true','attempt'=>$activity->content->attempt));;
 
-	//$skillsofthref = new moodle_url('/mod/skillsoft/view.php', array('id'=>$activity->cmid));;
-	//echo '<a href="'.$skillsofthref.'">'.$activity->name.'</a> - ';
+	// link to activity
 	echo $activity->name.' - ';
 	echo get_string('skillsoft_attempt', 'skillsoft').' '.$activity->content->attempt;
 	echo '</div>';
@@ -662,8 +651,6 @@ function skillsoft_ondemandcommunications() {
 function skillsoft_customreport($includetoday=false) {
 	global $CFG;
 	require_once($CFG->dirroot.'/mod/skillsoft/olsalib.php');
-	//require_once('olsalib.php');
-
 
 	//Constants for custom report preocessing
 	define('CUSTOMREPORT_RUN', '0');
