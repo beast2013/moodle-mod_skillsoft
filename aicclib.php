@@ -675,7 +675,7 @@ class aicchandler {
 				$id = skillsoft_setLastAccessDate($this->user->id, $this->skillsoft->id, $this->attempt, isotoepoch($resp->result->RESULT->lastaccessdate_iso));
 				$id = skillsoft_setAccessCount($this->user->id, $this->skillsoft->id, $this->attempt, $resp->result->RESULT->timesaccessed);	
 		
-				if (mb_strtoupper(substr($resp->result->RESULT->status,0,1)) == 'C' || mb_strtoupper(substr($resp->result->RESULT->status,0,1)) == 'P')) {
+				if (mb_strtoupper(substr($resp->result->RESULT->status,0,1)) == 'C' || mb_strtoupper(substr($resp->result->RESULT->status,0,1)) == 'P') {
 					$id = skillsoft_setCompletedDate($this->user->id, $this->skillsoft->id, $this->attempt,isotoepoch($resp->result->RESULT->completiondate_iso));
 					$id = skillsoft_insert_track($this->user->id, $this->skillsoft->id, $this->attempt, '[CORE]lesson_status', 'Completed');		
 				}
