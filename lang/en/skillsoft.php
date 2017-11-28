@@ -68,7 +68,7 @@ $string['skillsoft_username_identifier'] = 'Username';
 $string['skillsoft_tracktolms'] = 'Track to LMS';
 $string['skillsoft_tracktoolsa'] = 'Track to OLSA (On Demand Communications)';
 $string['skillsoft_tracktoolsacustomreport'] = 'Track to OLSA (Custom Report)';
-$string['skillsoft_tracktoolsaautomaticsync'] = 'Track to OLSA (Sync When Student Closes Course)';
+$string['skillsoft_tracktoolsaautomaticsync'] = 'Track to OLSA (Sync When Student Closes Course, works with AICC only)';
 
 $string['skillsoft_ssourl'] = 'Single SignOn URL';
 $string['skillsoft_ssourldesc'] = 'Enter the URL for the single signon use %s to indicate the activity id location. i.e. http://myserver/signon.aspx?coursename=%s&action=launch. Leave blank to use AICC.';
@@ -102,7 +102,7 @@ $string['skillsoft_resetcustomreportcrontask'] = 'Reset the custom report cycle'
 $string['skillsoft_resetcustomreportcrontaskdesc'] = 'When using "Track to OLSA (Custom Report)" there are a number of steps: RUN - Request the report be generated, POLL - Check the report is ready, DOWNLOAD - Retrieve the report, IMPORT - Import the report data into Moodle database, PROCESS - Add the usage data to the users and activities. This allows you to reset the cycle to the RUN step on next CRON run';
 
 $string['skillsoft_usesso'] = 'Use OLSA SSO';
-$string['skillsoft_usessodesc'] = 'Use the OLSA Web Services SSO function, this requires one of the Track to OLSA modes. If unchecked all launches uses the AICC launch process';
+$string['skillsoft_usessodesc'] = 'Use the OLSA Web Services SSO function, this requires either the Track to OLSA (On Demand Communications) or the Track to OLSA (Custom Report) mode to work. If unchecked all launches uses the AICC launch process';
 
 //May 2013
 $string['skillsoft_strictaiccstudentid'] = 'Enforce Strict AICC student_id format';
