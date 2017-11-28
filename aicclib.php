@@ -662,7 +662,7 @@ class aicchandler {
 			//We got results and the student actually successfully launched the lesson once.
 			if(($resp->success) && ($resp->result->RESULT->timesaccessed > 0)) {
 
-				$duration = Sec2Time($resp->result->RESULT->duration);
+				$duration = $this->Sec2Time($resp->result->RESULT->duration);
 
 				$id = skillsoft_insert_track($this->user->id, $this->skillsoft->id, $this->attempt, '[CORE]lesson_location', '');
 				$id = skillsoft_insert_track($this->user->id, $this->skillsoft->id, $this->attempt, '[CORE]lesson_status flag', '');
@@ -671,12 +671,12 @@ class aicchandler {
 				$id = skillsoft_insert_track($this->user->id, $this->skillsoft->id, $this->attempt, '[CORE]session_time', $duration);
 				$id = skillsoft_insert_track($this->user->id, $this->skillsoft->id, $this->attempt, '[CORE]time', $duration);
 				$id = skillsoft_insert_track($this->user->id, $this->skillsoft->id, $this->attempt, '[CORE]lesson_status', strtolower($resp->result->RESULT->status));
-				$id = skillsoft_setFirstAccessDate($this->user->id, $this->skillsoft->id, $this->attempt, isotoepoch($resp->result->RESULT->firstaccessdate_iso));
-				$id = skillsoft_setLastAccessDate($this->user->id, $this->skillsoft->id, $this->attempt, isotoepoch($resp->result->RESULT->lastaccessdate_iso));
+				$id = skillsoft_setFirstAccessDate($this->user->id, $this->skillsoft->id, $this->attempt, $this->isotoepoch($resp->result->RESULT->firstaccessdate_iso));
+				$id = skillsoft_setLastAccessDate($this->user->id, $this->skillsoft->id, $this->attempt, $this->isotoepoch($resp->result->RESULT->lastaccessdate_iso));
 				$id = skillsoft_setAccessCount($this->user->id, $this->skillsoft->id, $this->attempt, $resp->result->RESULT->timesaccessed);	
 		
 				if (mb_strtoupper(substr($resp->result->RESULT->status,0,1)) == 'C' || mb_strtoupper(substr($resp->result->RESULT->status,0,1)) == 'P') {
-					$id = skillsoft_setCompletedDate($this->user->id, $this->skillsoft->id, $this->attempt,isotoepoch($resp->result->RESULT->completiondate_iso));
+					$id = skillsoft_setCompletedDate($this->user->id, $this->skillsoft->id, $this->attempt,$this->isotoepoch($resp->result->RESULT->completiondate_iso));
 					$id = skillsoft_insert_track($this->user->id, $this->skillsoft->id, $this->attempt, '[CORE]lesson_status', 'Completed');		
 				}
 		
