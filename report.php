@@ -217,7 +217,7 @@ if ($user) {
 			for ($a = $maxattempts; $a > 0; $a--) {
 				$row = array();
 
-				$ufields = user_picture::fields('u');
+				$ufields = user_picture::fields('');
 
 				//$userdata = $DB->get_record('user',array('id'=>$skillsoftuser->userid),'id, firstname, lastname, picture, imagealt, email');
 				$userdata = $DB->get_record('user', ['id' => $skillsoftuser->userid], $ufields);
