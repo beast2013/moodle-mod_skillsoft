@@ -32,8 +32,7 @@ function xmldb_skillsoft_upgrade($oldversion) {
 	    /// Launch rename field summary
         $dbman->rename_field($table, $summaryfield, 'intro');
 
-
-        //Add intr0format
+        //Add introformat
         $introformatfield = new xmldb_field('introformat', XMLDB_TYPE_INTEGER, '4', XMLDB_UNSIGNED, null, null, '1', 'intro');
 		if (!$dbman->field_exists($table,$introformatfield)) {
         	$dbman->add_field($table, $introformatfield);
@@ -139,7 +138,6 @@ function xmldb_skillsoft_upgrade($oldversion) {
             $DB->update_record('skillsoft', $skillsoft);
         }
         
-        
         // Skillsoft savepoint reached.
         upgrade_mod_savepoint(true, 2014051301, 'skillsoft');
         $result = true;
@@ -183,7 +181,26 @@ function xmldb_skillsoft_upgrade($oldversion) {
     if ($result && $oldversion < 2016082301) {
     	upgrade_mod_savepoint(true, 2016082301, 'skillsoft');
     	$result = true;
-    } 
+	} 
+	
+	if($result && $oldversion < 2017113000) {
+		$table = new xmldb_table('skillsoft');
+
+		//Add audienceformat
+        $audienceformatfield = new xmldb_field('audienceformat', XMLDB_TYPE_INTEGER, '4', XMLDB_UNSIGNED, null, null, '1', 'audience');
+        if (!$dbman->field_exists($table, $audienceformatfield)) {
+            $dbman->add_field($table, $audienceformatfield);
+		}
+
+		//Add prereqformat
+        $prereqformatfield = new xmldb_field('prereqformat', XMLDB_TYPE_INTEGER, '4', XMLDB_UNSIGNED, null, null, '1', 'prereq');
+        if (!$dbman->field_exists($table, $prereqformatfield)) {
+            $dbman->add_field($table, $prereqformatfield);
+        }		
+
+        upgrade_mod_savepoint(true, 2017113000, 'skillsoft');
+        $result = true;
+	}
     
 	return $result;
 }

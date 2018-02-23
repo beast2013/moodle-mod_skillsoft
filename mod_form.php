@@ -29,14 +29,14 @@ class mod_skillsoft_mod_form extends moodleform_mod {
 
         if (empty($this->_cm)) {
 			// Asset ID
-			$mform->addElement('text', 'assetid', get_string('skillsoft_assetid','skillsoft'));
-			$mform->setType('assetid', PARAM_TEXT);
+			$mform->addElement('text', 'assetid', get_string('skillsoft_assetid','skillsoft'));			
     		$mform->addRule('assetid', null, 'required', null, 'client');
 			$mform->addRule('assetid', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 			$mform->addHelpButton('assetid', 'skillsoft_assetid', 'skillsoft');
         } else {
         	$mform->addElement('hidden', 'assetid', NULL, array('id'=>'id_assetid'));
-        }
+		}
+		$mform->setType('assetid', PARAM_TEXT);
 
 		//Button to get data from OLSA
 		//pass assetid to page
@@ -78,14 +78,14 @@ class mod_skillsoft_mod_form extends moodleform_mod {
 		$mform->addHelpButton('introeditor', 'skillsoft_summary', 'skillsoft');
 
 		// Audience
-		$mform->addElement('htmleditor', 'audience', get_string('skillsoft_audience','skillsoft'), array('rows'=>'15', 'cols'=>'80'));
-		$mform->setType('audience', PARAM_RAW);
-		$mform->addHelpButton('audience', 'skillsoft_audience', 'skillsoft');
+		$mform->addElement('editor', 'audienceeditor', get_string('skillsoft_audience','skillsoft'), array('rows'=>'15', 'cols'=>'80'), skillsoft_get_editor_options($this->context));
+		$mform->setType('audienceeditor', PARAM_RAW);
+		$mform->addHelpButton('audienceeditor', 'skillsoft_audience', 'skillsoft');
 
 		// Pre-Requisites
-		$mform->addElement('htmleditor', 'prereq', get_string('skillsoft_prereq','skillsoft'),array('rows'=>'15', 'cols'=>'80'));
-		$mform->setType('prereq', PARAM_RAW);
-		$mform->addHelpButton('prereq', 'skillsoft_prereq', 'skillsoft');
+		$mform->addElement('editor', 'prereqeditor', get_string('skillsoft_prereq','skillsoft'),array('rows'=>'15', 'cols'=>'80'),skillsoft_get_editor_options($this->context));
+		$mform->setType('prereqeditor', PARAM_RAW);
+		$mform->addHelpButton('prereqeditor', 'skillsoft_prereq', 'skillsoft');
 
 		// Duration
 		$mform->addElement('text', 'duration', get_string('skillsoft_duration','skillsoft'));
@@ -97,8 +97,6 @@ class mod_skillsoft_mod_form extends moodleform_mod {
 		$mform->setType('assettype', PARAM_TEXT);
 
 		// Launch URL
-
-
 	    if (isset($form->add)) {
 			$mform->addElement('text', 'launch', get_string('skillsoft_launch','skillsoft'), array('size' => '75'));
 			$mform->setType('launch', PARAM_TEXT);
@@ -110,8 +108,6 @@ class mod_skillsoft_mod_form extends moodleform_mod {
         	$mform->addElement('hidden', 'launch', NULL, array('id'=>'id_launch'));
         	$mform->setType('launch', PARAM_TEXT);
         }
-
-
 
 		//Mastery
 		//Set a NULL as first
@@ -130,7 +126,6 @@ class mod_skillsoft_mod_form extends moodleform_mod {
 		$mform->setType('aiccwindowsettings', PARAM_TEXT);
 		$mform->setDefault('aiccwindowsettings', $CFG->skillsoft_aiccwindowsettings);
 		$mform->addHelpButton('aiccwindowsettings', 'skillsoft_aiccwindowsettingsform', 'skillsoft');
-		
 		
 		//Time modified
 		$mform->addElement('hidden', 'timemodified');
@@ -155,5 +150,18 @@ class mod_skillsoft_mod_form extends moodleform_mod {
 		$this->add_action_buttons();
 	}
 
+	function data_preprocessing(&$default_values) {
+        if ($this->current->instance) {
+            $draftitemid = file_get_submitted_draft_itemid('audienceeditor');
+            $default_values['audienceeditor']['format'] = $default_values['audienceformat'];
+            $default_values['audienceeditor']['text']   = file_prepare_draft_area($draftitemid, $this->context->id, 'mod_skillsoft', 'audience', 0, skillsoft_get_editor_options($this->context), $default_values['audience']);
+			$default_values['audienceeditor']['itemid'] = $draftitemid;
+			
+			$draftitemid = file_get_submitted_draft_itemid('prereqeditor');
+            $default_values['prereqeditor']['format'] = $default_values['prereqformat'];
+            $default_values['prereqeditor']['text'] = file_prepare_draft_area($draftitemid, $this->context->id, 'mod_skillsoft', 'prereq', 0, skillsoft_get_editor_options($this->context), $default_values['prereq']);
+            $default_values['prereqeditor']['itemid'] = $draftitemid;
 
+		}
+	}
 }
