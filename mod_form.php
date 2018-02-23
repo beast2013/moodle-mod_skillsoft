@@ -72,7 +72,7 @@ class mod_skillsoft_mod_form extends moodleform_mod {
 		$mform->addRule('name', null, 'required', null, 'client');
 		$mform->addHelpButton('name', 'skillsoft_name', 'skillsoft');
 
-		$this->add_intro_editor(true, get_string('skillsoft_summary', 'skillsoft'));
+		$this->standard_intro_elements(true, get_string('skillsoft_summary', 'skillsoft'));
 		
 		// Summary
 		$mform->addHelpButton('introeditor', 'skillsoft_summary', 'skillsoft');
