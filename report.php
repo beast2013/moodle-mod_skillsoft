@@ -119,7 +119,8 @@ if ($user) {
 			$row = array();
 			$score = '&nbsp;';
 			if ($trackdata = skillsoft_get_tracks($skillsoft->id,$USER->id,$a)) {
-				$row[] = '<a href="'.new moodle_url('/mod/skillsoft/report.php', array('id'=>$cm->id,'user'=>'true','attempt'=>$trackdata->attempt)).'">'.$trackdata->attempt.'</a>';
+				//$row[] = '<a href="'.new moodle_url('/mod/skillsoft/report.php', array('id'=>$cm->id,'user'=>'true','attempt'=>$trackdata->attempt)).'">'.$trackdata->attempt.'</a>';
+				$row[] = $trackdata->attempt;
 				$row[] = isset($trackdata->{'[SUMMARY]firstaccess'}) ? userdate($trackdata->{'[SUMMARY]firstaccess'}):'';
 				$row[] = isset($trackdata->{'[SUMMARY]lastaccess'}) ? userdate($trackdata->{'[SUMMARY]lastaccess'}):'';
 				if ($skillsoft->completable == true) {
@@ -146,7 +147,8 @@ if ($user) {
 		skillsoft_event_log(SKILLSOFT_EVENT_REPORT_VIEWED, $skillsoft, $contextmodule, $cm);
 		$score = '&nbsp;';
 		if ($trackdata = skillsoft_get_tracks($skillsoft->id,$USER->id,$attempt)) {
-			$row[] = '<a href="'.new moodle_url('/mod/skillsoft/report.php', array('id'=>$cm->id,'user'=>'true','attempt'=>$trackdata->attempt)).'">'.$trackdata->attempt.'</a>';
+			//$row[] = '<a href="'.new moodle_url('/mod/skillsoft/report.php', array('id'=>$cm->id,'user'=>'true','attempt'=>$trackdata->attempt)).'">'.$trackdata->attempt.'</a>';
+			$row[] = $trackdata->attempt;
 			$row[] = isset($trackdata->{'[SUMMARY]firstaccess'}) ? userdate($trackdata->{'[SUMMARY]firstaccess'}):'';
 			$row[] = isset($trackdata->{'[SUMMARY]lastaccess'}) ? userdate($trackdata->{'[SUMMARY]lastaccess'}):'';
 			if ($skillsoft->completable == true) {
