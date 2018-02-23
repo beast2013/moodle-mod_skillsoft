@@ -219,7 +219,6 @@ if ($user) {
 
 				$ufields = user_picture::fields('');
 
-				//$userdata = $DB->get_record('user',array('id'=>$skillsoftuser->userid),'id, firstname, lastname, picture, imagealt, email');
 				$userdata = $DB->get_record('user', ['id' => $skillsoftuser->userid], $ufields);
 
 				$row[] = $OUTPUT->user_picture($userdata, array('courseid'=>$course->id)).' '.'<a href="'.$CFG->wwwroot.'/user/view.php?id='.$skillsoftuser->userid.'&amp;course='.$course->id.'">'.fullname($userdata).'</a>';
