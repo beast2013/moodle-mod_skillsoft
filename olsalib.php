@@ -499,7 +499,8 @@ function AI_GetXmlAssetMetaData($assetid) {
 			"exceptions" => 0,
 			"soap_version"   => SOAP_1_2,
 			"cache_wsdl" => WSDL_CACHE_BOTH,
-			"encoding"=> "UTF-8"
+			"encoding"=> "UTF-8",
+			"location"=> $endpoint,
 			);
 
 			//Create a new instance of the OLSA Soap Client
@@ -571,7 +572,8 @@ function UD_GetAssetResults($userid,$assetid,$summarylevel=true) {
 			"exceptions" => 0,
 			"soap_version"   => SOAP_1_2,
 			"cache_wsdl" => WSDL_CACHE_BOTH,
-			"encoding"=> "UTF-8"
+			"encoding"=> "UTF-8",
+			"location"=> $endpoint,
 			);
 
 			//Create a new instance of the OLSA Soap Client
@@ -652,7 +654,8 @@ function OC_InitializeTrackingData() {
 			"exceptions" => 0,
 			"soap_version"   => SOAP_1_2,
 			"cache_wsdl" => WSDL_CACHE_BOTH,
-			"encoding"=> "UTF-8"
+			"encoding"=> "UTF-8",
+			"location"=> $endpoint,
 			);
 
 			//Create a new instance of the OLSA Soap Client
@@ -717,7 +720,8 @@ function OC_AcknowledgeTrackingData($handle) {
 			"exceptions" => 0,
 			"soap_version"   => SOAP_1_2,
 			"cache_wsdl" => WSDL_CACHE_BOTH,
-			"encoding"=> "UTF-8"
+			"encoding"=> "UTF-8",
+			"location"=> $endpoint,
 			);
 
 			//Create a new instance of the OLSA Soap Client
@@ -782,7 +786,8 @@ function OC_GetTrackingData() {
 			"exceptions" => 0,
 			"soap_version"   => SOAP_1_2,
 			"cache_wsdl" => WSDL_CACHE_BOTH,
-			"encoding"=> "UTF-8"
+			"encoding"=> "UTF-8",
+			"location"=> $endpoint,
 			);
 
 			//Create a new instance of the OLSA Soap Client
@@ -899,7 +904,8 @@ $manager = ''
 			"exceptions" => 0,
 			"soap_version"   => SOAP_1_2,
 			"cache_wsdl" => WSDL_CACHE_BOTH,
-			"encoding"=> "UTF-8"
+			"encoding"=> "UTF-8",
+			"location"=> $endpoint,
 			);
 
 			//Create a new instance of the OLSA Soap Client
@@ -1051,7 +1057,8 @@ function UD_InitiateCustomReportByUserGroups($group,$startDate='',$endDate='',$d
 			"exceptions" => 0,
 			"soap_version"   => SOAP_1_2,
 			"cache_wsdl" => WSDL_CACHE_BOTH,
-			"encoding"=> "UTF-8"
+			"encoding"=> "UTF-8",
+			"location"=> $endpoint,
 			);
 
 			//Create a new instance of the OLSA Soap Client
@@ -1143,7 +1150,8 @@ function UD_InitiateCustomReportByUsers($username='',$startDate='',$endDate='',$
 			"exceptions" => 0,
 			"soap_version"   => SOAP_1_2,
 			"cache_wsdl" => WSDL_CACHE_BOTH,
-			"encoding"=> "UTF-8"
+			"encoding"=> "UTF-8",
+			"location"=> $endpoint,
 			);
 
 			//Create a new instance of the OLSA Soap Client
@@ -1229,7 +1237,8 @@ function UTIL_PollForReport($handle) {
 			"exceptions" => 0,
 			"soap_version"   => SOAP_1_2,
 			"cache_wsdl" => WSDL_CACHE_BOTH,
-			"encoding"=> "UTF-8"
+			"encoding"=> "UTF-8",
+			"location"=> $endpoint,
 			);
 
 			//Create a new instance of the OLSA Soap Client
