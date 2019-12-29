@@ -336,11 +336,11 @@ $string['privacy:metadata:attempt'] = 'The attempt number';
 $string['privacy:metadata:au_track:element'] = 'The name of the element to be tracked';
 $string['privacy:metadata:au_track:value'] = 'The value of the given element';
 $string['privacy:metadata:skillsoft_session_track'] = 'The session information used to connect Moodle and SkillSoft sessions';
-$string['privacy:metadata:skillsoft_au_track'] = 'The tracked data of the SCOes belonging to the activity';
+$string['privacy:metadata:skillsoft_au_track'] = 'The tracked data of the SkillSoft courses belonging to the activity';
 $string['privacy:metadata:timemodified'] = 'The time when the tracked element was last modified';
 $string['privacy:metadata:userid'] = 'The ID of the user who accessed the SkillSoft activity';
 
-$string['privacy:metadata:report_results:loginname'] = '';
+$string['privacy:metadata:report_results:loginname'] = 'Login Name as sent to SkillSoft';
 $string['privacy:metadata:report_results:lastname'] = 'Last name of the user as sent to SkillSoft';
 $string['privacy:metadata:report_results:firstname'] = 'First name of the user as sent to SkillSoft';
 $string['privacy:metadata:report_results:firstaccessdate'] = 'First date and time that the user accessed the SkillSoft Title';
