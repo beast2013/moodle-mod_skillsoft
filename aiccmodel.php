@@ -173,7 +173,8 @@ class core {
 	{
 		$vocabulary = array(
 	                   'passed' => 'passed',
-	                   'completed' => 'completed',
+						'complete' => 'complete',
+						'completed' => 'completed',
 	                   'failed' => 'failed',
 	                   'incomplete' => 'incomplete',
 	                   'browsed' => 'browsed',

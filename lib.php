@@ -195,7 +195,7 @@ function skillsoft_get_user_grades($skillsoft, $userid=0) {
 			}
 			$rawgradeinfo =  skillsoft_grade_user($skillsoft, $userid);
 
-			$grades[$userid] = new object();
+			$grades[$userid] = new stdClass();
 			$grades[$userid]->id         = $userid;
 			$grades[$userid]->userid     = $userid;
 			$grades[$userid]->rawgrade = isset($rawgradeinfo->score) ? $rawgradeinfo->score : NULL;
