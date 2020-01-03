@@ -530,13 +530,26 @@ class provider implements
         // Prepare SQL to gather all completed IDs.
         $userids = $userlist->get_userids();
         list($insql, $inparams) = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
-
-        $sql = "SELECT ss.id
+        $sqla = "SELECT ss.id
                   FROM {%s} ss
                   JOIN {modules} m
-                    ON m.name = 'scorm'
+                    ON m.name = 'skillsoft'
                   JOIN {course_modules} cm
-                    ON cm.instance = ss.scormid
+                    ON cm.instance = ss.skillsoftid
+                   AND cm.module = m.id
+                  JOIN {context} ctx
+                    ON ctx.instanceid = cm.id
+                 WHERE ctx.id = :contextid
+                   AND ss.userid $insql";
+
+          $sqlb = "SELECT ss.id
+                  FROM {%s} ss
+                  JOIN {skillsoft} s
+                    ON s.assetid = ss.assetid
+                  JOIN {modules} m
+                    ON m.name = 'skillsoft'
+                  JOIN {course_modules} cm
+                    ON cm.instance = s.id
                    AND cm.module = m.id
                   JOIN {context} ctx
                     ON ctx.instanceid = cm.id
@@ -544,8 +557,10 @@ class provider implements
                    AND ss.userid $insql";
         $params = array_merge($inparams, ['contextid' => $context->id]);
 
-        static::delete_data('scorm_scoes_track', $sql, $params);
-        static::delete_data('scorm_aicc_session', $sql, $params);
+        static::delete_data('skillsoft_au_track', $sqla, $params);
+        static::delete_data('skillsoft_session_track', $sqla, $params);
+        static::delete_data('skillsoft_tdr', $sqlb, $params);
+        static::delete_data('skillsoft_report_results', $sqlb, $params);
     }
 
     /**
