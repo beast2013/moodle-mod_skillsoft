@@ -198,7 +198,7 @@ function xmldb_skillsoft_upgrade($oldversion) {
             $dbman->add_field($table, $prereqformatfield);
         }		
 
-        upgrade_mod_savepoint(true, 2017113000, 'skillsoft');
+        upgrade_mod_savepoint(true, 2017113004, 'skillsoft');
         $result = true;
 	}
     
